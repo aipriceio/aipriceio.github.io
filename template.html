@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>aiprice ｜ ChatGPT、Claude、Gemini、Grok 全网在售报价实时比价</title>
+<meta name="description" content="aiprice 每 20 分钟同步一次 @@STORES@@ 家卡密店铺的在售报价，把 ChatGPT、Claude、Gemini、Grok 的官方订阅、成品号、团队位、区域卡分开列在同一张表里，先比价再下单。">
+<link rel="canonical" href="https://aipriceio.github.io/">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="aiprice">
+<meta property="og:title" content="aiprice ｜ AI 订阅实时比价">
+<meta property="og:description" content="同一款会员，不同店铺的差价常常超过一倍。把 @@OFFERS@@ 条在售报价摊在同一张表上再决定在哪买。">
+<meta property="og:url" content="https://aipriceio.github.io/">
+<meta property="og:image" content="https://aipriceio.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="aiprice ｜ AI 订阅实时比价">
+<meta name="twitter:description" content="ChatGPT、Claude、Gemini、Grok 全网卡密店铺在售报价，20 分钟同步一次。">
+<meta name="twitter:image" content="https://aipriceio.github.io/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+@@LD@@
+</script>
+<script type="application/ld+json">
+@@FAQ_LD@@
+</script>
+<style>
+:root{
+  --bg:#000000;
+  --surface:#181818;
+  --surface-2:#1F1F1F;
+  --line:#272727;
+  --fg:#F2F2F2;
+  --muted:#9B9B9B;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--fg);
+  font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;line-height:24px;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block}
+a{color:inherit}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:100}
+.skip:focus{left:16px;top:16px}
+
+/* type scale */
+.t-xs{font-size:12px;line-height:16px}
+.t-sm{font-size:14px;line-height:20px}
+.t-base{font-size:16px;line-height:24px}
+.t-lg{font-size:18px;line-height:28px}
+.t-xl{font-size:20px;line-height:28px}
+.t-2xl{font-size:24px;line-height:32px}
+.t-3xl{font-size:30px;line-height:36px}
+.t-4xl{font-size:36px;line-height:40px}
+.muted{color:var(--muted)}
+.semi{font-weight:600}
+
+/* nav */
+.nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  width:min(1080px,calc(100% - 32px));
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:8px 12px;z-index:50;
+  background:rgba(24,24,24,0.72);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid var(--line);border-radius:9999px;
+}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;line-height:24px;text-decoration:none;color:#fff}
+.brand .mark{width:20px;height:20px;border-radius:8px;background:#fff;color:#000;display:grid;place-items:center;font-size:12px;font-weight:700}
+.navlinks{display:flex;gap:24px}
+.navlinks a{font-size:14px;line-height:20px;color:var(--muted);text-decoration:none;transition:color 300ms var(--ease)}
+.navlinks a:hover{color:#fff}
+.nav .btn{white-space:nowrap}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 12px;border-radius:8px;border:1px solid transparent;
+  font-size:16px;line-height:24px;font-weight:600;text-decoration:none;
+  transition:transform 300ms var(--ease),background 300ms var(--ease),color 300ms var(--ease);
+}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.btn:active{transform:scale(0.98)}
+.btn-primary{background:#FFFFFF;color:#000000}
+.btn-primary:hover{background:#D8D8D8}
+.btn-ghost{background:transparent;color:#fff;border-color:var(--line)}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{padding:8px 12px;font-size:14px;line-height:20px}
+
+/* hero */
+.hero{margin-top:64px;padding:96px 0 80px}
+.hero h1{
+  margin:0;max-width:680px;
+  font-size:36px;line-height:40px;font-weight:700;letter-spacing:-0.01em;
+  background:linear-gradient(90deg,#FFFFFF,#9B9B9B);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-wrap:balance;
+}
+.hero .sub{margin:24px 0 0;max-width:680px;color:var(--muted);font-size:16px;line-height:24px;text-wrap:pretty}
+.hero .acts{margin-top:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;
+  padding:4px 12px;border:1px solid var(--line);border-radius:9999px;
+  font-size:12px;line-height:16px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);
+}
+.dot{width:4px;height:4px;border-radius:9999px;background:#4ADE80}
+
+/* stats */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:40px 0}
+.stat .num{font-size:30px;line-height:36px;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* sections */
+section{padding:80px 0}
+.h2{margin:0;font-size:30px;line-height:36px;font-weight:600;text-wrap:balance}
+.lead{margin:12px 0 0;color:var(--muted);max-width:680px;text-wrap:pretty}
+
+/* cards */
+.card{
+  display:block;background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;padding:24px;text-decoration:none;color:inherit;
+  transition:transform 500ms var(--ease),border-color 500ms var(--ease),background 500ms var(--ease);
+}
+a.card:hover{transform:translateY(-2px);border-color:#3A3A3A;background:var(--surface-2)}
+a.card:focus-visible{outline:2px solid #fff;outline-offset:2px}
+a.card:active{transform:scale(0.99)}
+.plats{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+.plat .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:16px}
+.plat .tag{font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#fff;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:4px 8px}
+.plat .name{margin-bottom:8px}
+.plat .price{display:flex;align-items:baseline;gap:4px;margin-bottom:8px;font-variant-numeric:tabular-nums}
+
+/* tagline reveal */
+.tagline{padding:96px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tagline p{margin:0;max-width:680px;font-size:30px;line-height:36px;font-weight:600;text-wrap:balance}
+.tagline .w{opacity:0.28;transition:opacity 500ms var(--ease),color 500ms var(--ease)}
+.tagline .w.on{opacity:1}
+
+/* how */
+.steps{display:grid;grid-template-columns:1fr;gap:24px;margin-top:32px;counter-reset:s}
+.step{display:flex;gap:16px}
+.step .n{
+  flex:none;width:32px;height:32px;border-radius:8px;display:grid;place-items:center;
+  background:var(--surface);border:1px solid var(--line);font-size:14px;line-height:20px;font-weight:600;
+}
+.step h3{margin:0 0 4px;font-size:16px;line-height:24px;font-weight:600}
+.step p{margin:0;color:var(--muted);font-size:14px;line-height:20px}
+
+/* benefits */
+.bens{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+.ben h3{margin:0 0 8px;font-size:18px;line-height:28px;font-weight:600}
+.ben p{margin:0;color:var(--muted);font-size:14px;line-height:20px}
+
+/* table */
+.table{margin-top:32px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+table{width:100%;border-collapse:collapse}
+th{
+  background:var(--surface-2);text-align:left;padding:12px 16px;
+  font-size:12px;line-height:16px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:600;
+}
+td{padding:12px 16px;border-top:1px solid var(--line);font-size:14px;line-height:20px;vertical-align:middle}
+tbody tr{cursor:pointer;transition:background 300ms var(--ease)}
+tbody tr:hover{background:var(--surface-2)}
+tbody tr:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pname{display:block;font-size:16px;line-height:24px;font-weight:600}
+.sub{display:block;margin-top:2px}
+.note{margin-top:16px;font-size:12px;line-height:16px;color:var(--muted)}
+
+/* faq */
+.faq{margin-top:32px}
+.qa{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:12px 16px;margin-bottom:8px}
+.qa summary{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  cursor:pointer;list-style:none;font-size:16px;line-height:24px;font-weight:600;
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:4px}
+.qa .chev{flex:none;color:var(--muted);transition:transform 300ms var(--ease)}
+.qa[open] .chev{transform:rotate(180deg)}
+.qa p{margin:12px 0 0;color:var(--muted);font-size:14px;line-height:20px}
+
+/* final cta */
+.final{padding:0 0 96px}
+.final .inner{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:48px 24px;text-align:center;
+}
+.final h2{margin:0 auto;max-width:680px;font-size:30px;line-height:36px;font-weight:600;text-wrap:balance}
+.final p{margin:16px auto 0;max-width:680px;color:var(--muted)}
+.final .acts{margin-top:24px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:48px 0}
+footer .row{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+footer a{color:var(--muted);text-decoration:none;font-size:14px;line-height:20px;transition:color 300ms var(--ease)}
+footer a:hover{color:#fff}
+footer .links{display:flex;flex-wrap:wrap;gap:24px}
+
+/* reveals */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 700ms var(--ease),transform 700ms var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+@media (min-width:768px){
+  .hero h1{font-size:48px;line-height:1}
+  .hero .sub{font-size:18px;line-height:28px}
+  .stats .grid{grid-template-columns:repeat(4,1fr);padding:48px 0}
+  .stat .num{font-size:36px;line-height:40px}
+  .h2,.final h2{font-size:36px;line-height:40px}
+  .plats{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .bens{grid-template-columns:repeat(2,1fr)}
+  .tagline p{font-size:48px;line-height:1.1}
+  .final .inner{padding:64px 48px}
+  section{padding:96px 0}
+  .hero{padding:96px 0 96px}
+}
+@media (min-width:1024px){
+  .hero h1{font-size:60px;line-height:1}
+  .plats{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:860px){
+  .navlinks{display:none}
+}
+@media (max-width:720px){
+  .table{overflow:visible;border:0;background:transparent}
+  table,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tbody tr{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:12px 16px;margin-bottom:8px}
+  td{border:0;padding:2px 0;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  td::before{content:attr(data-label);color:var(--muted);font-size:12px;line-height:16px;order:2}
+  td:first-child{display:block;padding-bottom:8px;order:-1}
+  td:first-child::before{display:none}
+  .num{text-align:left}
+  .num{order:1}
+  .num::before{order:-1;margin-right:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{transform:none;transition:opacity 200ms linear}
+  .tagline .w{transition:opacity 200ms linear}
+  a.card:hover{transform:none}
+  .btn:active{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">a</span>aiprice</a>
+  <nav class="navlinks" aria-label="页面导航">
+    <a href="#platforms">主流四家</a>
+    <a href="#how">怎么用</a>
+    <a href="#products">热门商品</a>
+    <a href="#faq">常见问题</a>
+  </nav>
+  <a class="btn btn-primary btn-sm" href="@@SITE@@/?ch=@@REF@@" rel="noopener">打开 aiprice.io</a>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>AI 订阅实时比价</span>
+      <h1>买 AI 会员之前，<br>先看一眼全网最低价</h1>
+      <p class="sub">aiprice 每 20 分钟同步一次 @@STORES@@ 家卡密店铺的在售报价，把 ChatGPT、Claude、Gemini、Grok 的官方卡充、成品号、团队位、区域卡摊在同一张表里。价格差多少、哪条有货、质保怎么写，一眼就能看完。</p>
+      <div class="acts">
+        <a class="btn btn-primary" href="@@SITE@@/?ch=@@REF@@" rel="noopener">查看实时比价</a>
+      </div>
+      <p class="t-sm muted" style="margin-top:24px">数据快照 @@GEN@@（北京时间）· @@PRODUCTS@@ 个商品 · @@OFFERS@@ 条报价</p>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="grid">
+        <div class="stat"><div class="num">@@OFFERS@@</div><div class="t-sm muted">在售报价</div></div>
+        <div class="stat"><div class="num">@@PRODUCTS@@</div><div class="t-sm muted">覆盖商品</div></div>
+        <div class="stat"><div class="num">@@STORES@@</div><div class="t-sm muted">卡密店铺</div></div>
+        <div class="stat"><div class="num">20 分钟</div><div class="t-sm muted">同步一次</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="platforms">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h2">主流四家，各自的最低价</h2>
+        <p class="lead">下面这四个价格，是当前快照里对应商品的最低一条在售报价，点进去可以看到全部店铺的价格分布。</p>
+      </div>
+      <div class="plats">
+@@CARDS@@
+      </div>
+    </div>
+  </section>
+
+  <section class="tagline">
+    <div class="wrap">
+      <p>@@TAGLINE@@</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h2">三步看完，再决定在哪买</h2>
+        <p class="lead">比价不是看一眼最低价就下单，重点是先分清渠道，再看有没有货。</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="n">1</div>
+          <div>
+            <h3>搜一个商品</h3>
+            <p>输入「ChatGPT Plus」或「Claude Pro」，看到一个商品下面所有店铺的报价，而不是一家一家翻。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div>
+            <h3>先看渠道，再比数字</h3>
+            <p>官方卡充、成品号、共享团队位、区域卡分开列。质保条款不一样的价格，本来就不是同一个东西。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div>
+            <h3>去店铺自己下单</h3>
+            <p>aiprice 不经手交易，也不收佣金，点「去店铺」直接跳到对方的商品页，付款和发货都在那里完成。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h2">为什么要比价，而不是直接买</h2>
+        <p class="lead">同一款会员，不同渠道的成本结构差很远。差价背后是质保、账号状态和区域限制的区别。</p>
+      </div>
+      <div class="bens reveal">
+        <div class="card ben">
+          <h3>同样的会员，价格能差一半</h3>
+          <p>ChatGPT Plus 从几十块到一百多都有，Claude Pro 也是。差价大部分来自渠道，不是运气。</p>
+        </div>
+        <div class="card ben">
+          <h3>有货数量单独标出来</h3>
+          <p>只有两条在售的报价和两百条在售的报价，稳定性完全不同。库存深度直接写在列表里。</p>
+        </div>
+        <div class="card ben">
+          <h3>质保和风险写得清楚</h3>
+          <p>保订阅还是保封号，包不包换，报价标题里的规格说明保留原样，不做美化。</p>
+        </div>
+        <div class="card ben">
+          <h3>查价不用注册</h3>
+          <p>打开就能看报价、看历史、点去店铺。注册只是用来保存关注的商品。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h2">当前在售最多的 12 个商品</h2>
+        <p class="lead">按在售条数排序，价格是快照里最低的一条。点任意一行可以看到该商品的全部报价。</p>
+      </div>
+      <div class="table reveal">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">商品</th>
+              <th scope="col" style="text-align:right">最低价</th>
+              <th scope="col" style="text-align:right">在售</th>
+              <th scope="col" style="text-align:right">报价总数</th>
+            </tr>
+          </thead>
+          <tbody>
+@@ROWS@@
+          </tbody>
+        </table>
+      </div>
+      <p class="note">数据快照 @@GEN@@（北京时间）。店铺价格随时会变，下单前请以店铺页面显示的价格和规格为准。</p>
+      <p style="margin-top:24px"><a class="btn btn-ghost" href="@@SITE@@/stock/?ch=@@REF@@" rel="noopener">查看全部 @@PRODUCTS@@ 个商品</a></p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h2">常见问题</h2>
+        <p class="lead">关于数据来源、更新频率和下单流程，这里都有答案。</p>
+      </div>
+      <div class="faq">
+@@FAQ@@
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="inner reveal">
+        <h2>先去比一下，再决定在哪买</h2>
+        <p>同一个会员，你可能一直在多付一半的钱。</p>
+        <div class="acts">
+          <a class="btn btn-primary" href="@@SITE@@/?ch=@@REF@@" rel="noopener">打开 aiprice.io</a>
+          <a class="btn btn-ghost" href="@@SITE@@/stock/?ch=@@REF@@" rel="noopener">看全部商品</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <div class="brand" style="margin-bottom:8px"><span class="mark">a</span>aiprice</div>
+        <p class="t-sm muted" style="margin:0">AI 订阅与 API 报价聚合站。数据来自 <a href="@@SITE@@/" rel="noopener">aiprice.io</a>。</p>
+      </div>
+      <nav class="links" aria-label="页脚导航">
+        <a href="@@SITE@@/?ch=@@REF@@" rel="noopener">实时比价</a>
+        <a href="@@SITE@@/stock/?ch=@@REF@@" rel="noopener">全部商品</a>
+        <a href="@@SITE@@/about" rel="noopener">关于 aiprice</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+    </div>
+    <p class="t-xs muted" style="margin:24px 0 0">本页是静态说明页，不设置 Cookie，不收集访客数据。快照 @@GEN@@（北京时间）。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) || reduce) {
+    reveals.forEach(function(el){ el.classList.add("in"); });
+    document.querySelectorAll(".tagline .w").forEach(function(w){ w.classList.add("on"); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("in"); ro.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -80px 0px", threshold: 0.1 });
+    reveals.forEach(function(el){ ro.observe(el); });
+
+    var words = document.querySelectorAll(".tagline .w");
+    var wo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          var i = Array.prototype.indexOf.call(words, e.target);
+          setTimeout(function(){ e.target.classList.add("on"); }, (i % 24) * 55);
+          wo.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -25% 0px", threshold: 0.6 });
+    words.forEach(function(w){ wo.observe(w); });
+  }
+
+  document.querySelectorAll('tr[role="link"]').forEach(function(tr){
+    tr.addEventListener("keydown", function(ev){
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); tr.click(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
